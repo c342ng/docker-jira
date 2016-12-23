@@ -1,0 +1,21 @@
+version: '2'
+services:
+  confluence:
+    image: registry.cn-hangzhou.aliyuncs.com/c3t3m3/docker-jira:aliyun
+    ports:
+      - "8082:8080"
+    volumes:
+      - "./data/confluence/:/var/jira:rw"
+    links:
+      - jira-mysql
+    mac_address: 8F:A0:C0:25:5F:AB
+    networks:
+      - jira-net
+  jira-mysql:
+    image: registry.cn-hangzhou.aliyuncs.com/c3t3m3/docker-mysql:aliyun
+    networks:
+      - jira-net
+    mac_address: 80:BA:E7:C6:23:66
+networks:
+  jira-net:
+    driver: bridge
