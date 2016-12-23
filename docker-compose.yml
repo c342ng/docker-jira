@@ -5,7 +5,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - "./data/confluence/:/var/jira:rw"
+      - "./data/jira/:/var/jira:rw"
     links:
       - jira-mysql
     mac_address: 8F:A0:C0:25:5F:AB
