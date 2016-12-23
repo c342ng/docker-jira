@@ -1,10 +1,16 @@
 FROM  c3t3m3/docker-java:jdk8-oracle
-ENV CONF_HOME /var/jira
-RUN apt-get update -q && apt-get install -y wget curl mysql-client \
+
+RUN mkdir -p /data/jira && mkdir -p /opt/jira
+
+RUN apt-get update -q && apt-get install -y wget curl vim \
   && apt-get -q clean -y && rm -rf /var/lib/apt/lists/* && rm -f /var/cache/apt/*.bin
-RUN mkdir -p "${CONF_HOME}" \
-  && curl -Ls https://www.atlassian.com/software/jira/downloads/binary/atlassian-jira-software-7.2.6.tar.gz | \
-  tar -xz --directory "${CONF_HOME}" --strip-components=1
-  
-EXPOSE 8090
+RUN curl -Ls https://www.atlassian.com/software/jira/downloads/binary/atlassian-jira-software-7.2.6.tar.gz | \
+  tar -xz --directory /opt/jira --strip-components=1
+RUN curl -Ls https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.0.8.tar.gz | \
+  tar -xz --directory "/opt/jira/lib/" --strip-components=1
+RUN echo "jira.home =/data/jira" > "/opt/jira/atlassian-jira/WEB-INF/classes/jira-application.properties"
+
 EXPOSE 8080
+VOLUME ['/data/jira']
+
+CMD ["sh","/opt/jira/bin/catalina.sh","run"]
