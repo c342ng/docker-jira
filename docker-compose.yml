@@ -1,11 +1,9 @@
 version: '2'
 services:
-  confluence:
+  jira:
     image: registry.cn-hangzhou.aliyuncs.com/c3t3m3/docker-jira:aliyun
     ports:
       - "8080:8080"
-    volumes:
-      - "./data/jira/:/var/jira:rw"
     links:
       - jira-mysql
     networks:
