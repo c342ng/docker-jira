@@ -1,4 +1,4 @@
-FROM java:openjdk-8-jdk
+FROM  c3t3m3/docker-java:jdk8-oracle
 ENV CONF_HOME /var/jira
 RUN apt-get update -q && apt-get install -y wget curl mysql-client \
   && apt-get -q clean -y && rm -rf /var/lib/apt/lists/* && rm -f /var/cache/apt/*.bin
