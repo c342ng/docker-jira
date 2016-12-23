@@ -8,6 +8,7 @@ services:
       - "./data/jira/:/var/jira:rw"
     links:
       - jira-mysql
+    privileged: true
     mac_address: 8F:A0:C0:25:5F:AB
     networks:
       - jira-net
