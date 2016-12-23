@@ -3,7 +3,7 @@ services:
   confluence:
     image: registry.cn-hangzhou.aliyuncs.com/c3t3m3/docker-jira:aliyun
     ports:
-      - "8082:8080"
+      - "8100:8080"
     volumes:
       - "./data/confluence/:/var/jira:rw"
     links:
