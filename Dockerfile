@@ -11,6 +11,6 @@ RUN curl -Ls https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-jav
 RUN echo "jira.home =/data/jira" > "/opt/jira/atlassian-jira/WEB-INF/classes/jira-application.properties"
 
 EXPOSE 8080
-VOLUME ['/data/jira']
+VOLUME /data/jira
 
 CMD ["sh","/opt/jira/bin/catalina.sh","run"]
